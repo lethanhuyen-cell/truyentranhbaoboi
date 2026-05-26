@@ -1,0 +1,6 @@
+*.pdf
+*.docx
+*.jpg
+*.png
+!assets/**/*.png
+!assets/**/*.jpg

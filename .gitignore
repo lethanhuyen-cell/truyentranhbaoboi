@@ -20,3 +20,5 @@ Thumbs.db
 # Exclude large PDFs that exceed GitHub's 100MB file limit
 Kay và LyLy_ Trái Tim Của Vương Quốc Ngầm.pdf
 *.pdf
+
+.vercel
