@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-warmPaper: #FFF4D8;
+  --color-nightLibrary: #17213A;
+  --color-cardLight: #FFF9EE;
+  --color-textPrimary: #1F2430;
+  --color-textSecondary: #6F675B;
+  --color-honeyYellow: #F6C65B;
+  --color-softEarthPink: #D98B8B;
+  --color-forestGreen: #2F6F5E;
+  --color-decodePurple: #2A1E3F;
+  --color-decodeCopper: #B8783E;
+  
+  --font-vietnam: "Be Vietnam Pro", sans-serif;
+}
+
+body {
+  font-family: var(--font-vietnam);
+  background-color: #f0f2f5;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #6f675b;
+  border-radius: 10px;
+}
+
+.glass-player {
+  background: rgba(255, 253, 249, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(31, 36, 48, 0.08);
+}
+
+.glass-header {
+  background: rgba(255, 253, 249, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-nav {
+  background: rgba(255, 253, 249, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(31, 36, 48, 0.06);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(246, 198, 91, 0.3);
+}
+
+/* Twinkling Stars Animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+/* Rotating Vinyl Animation */
+@keyframes rotate-vinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.vinyl-rotate {
+  animation: rotate-vinyl 15s linear infinite;
+}
+.vinyl-paused {
+  animation-play-state: paused;
+}
+
+/* Breathing pulse animation */
+@keyframes breath {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.08); opacity: 0.8; }
+}
+.pulse-breath {
+  animation: breath 4s infinite ease-in-out;
+}
+
+/* Active button effect */
+.btn-active:active {
+  transform: scale(0.97);
+}
