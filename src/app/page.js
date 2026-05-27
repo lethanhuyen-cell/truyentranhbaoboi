@@ -5,7 +5,102 @@ import React, { useState, useEffect, useRef } from 'react';
 // ================= CONSTANTS & MOCKS =================
 // The built-in stories have been removed from the main repository 
 // as requested by the user, so they can add custom stories in the Admin panel.
-const DEFAULT_STORIES = [];
+const DEFAULT_STORIES = [
+  {
+    id: 'doan_ket_suc_manh',
+    title: 'Sức Mạnh Của Sự Đoàn Kết',
+    ageGroup: '5-8',
+    author: 'Antigravity',
+    duration: '8 phút',
+    cover: '/images/cow_story/cow_page_1.png',
+    tags: ['👦👧 5-8 tuổi', '📖 14 trang', '⏱️ 8 phút'],
+    summary: 'Câu chuyện kể về một gia đình nhà bò trên đồng cỏ xanh mát. Dù đối mặt với thử thách từ bác Sư Tử to lớn, nhờ tinh thần đoàn kết và sự chia sẻ nhân hậu, họ không những tự bảo vệ được nhau mà còn xây dựng một tình bạn hòa bình ấm áp.',
+    pedagogy: [
+      'Giúp bé hiểu được giá trị to lớn của tinh thần đoàn kết, giúp đỡ lẫn nhau.',
+      'Dạy bé cách giải quyết mâu thuẫn bằng sự nhân ái, thấu hiểu thay vì thù hận.',
+      'Khơi dậy tình yêu thương gia đình và trách nhiệm bọc lót, che chở cho nhau.'
+    ],
+    questions: [
+      'Tại sao bác Sư Tử lại không thể tiếp cận đàn bò khi họ đứng sát nhau?',
+      'Bác Bò Già đã chỉ cho bác Sư Tử đi tìm thức ăn ở đâu?',
+      'Bài học ý nghĩa nhất mà con rút ra từ câu chuyện này là gì?'
+    ],
+    badge: '🏆 Huy hiệu Đoàn Kết',
+    badgeIcon: '🤝',
+    pages: [
+      {
+        image: '/images/cow_story/cow_page_1.png',
+        text: 'Ngày xửa ngày xưa, ở một thung lũng xanh mướt ngập tràn ánh nắng và hương hoa dại, có một gia đình nhà bò chung sống bên nhau. Đàn bò lúc nào cũng rộn rã tiếng cười, những chú bò con lon ton chạy nhảy trên thảm cỏ mềm mại như nhung. Bò Anh vui vẻ bảo: \'Cỏ hôm nay ngọt quá, các em ơi!\' Chú Bò Út reo lên: \'Sương sớm đọng trên lá như những viên pha lê lấp lánh này!\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_2.png',
+        text: 'Ở phía bên kia bìa rừng, có bác Sư Tử lông vàng óng ả đang dạo bước. Bác Sư Tử vốn là người mạnh mẽ nhất khu rừng và đang muốn tìm một chút thức ăn cho bữa trưa của mình. Bác đưa mắt nhìn về phía đồng cỏ xanh và tự nhủ: \'Chà, đàn bò bên kia trông mới ngon lành làm sao! Mình phải tìm cách tiếp cận họ mới được.\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_3.png',
+        text: 'Bác Sư Tử khẽ khàng tiến lại gần. Thấy bóng dáng to lớn với chiếc bờm vàng rực, chú Bò Đen giật mình hoảng hốt. Chú định quay đầu chạy trốn một mình vào lùm cây phía sau và kêu lên: \'Ôi giật mình quá! Bác Sư Tử to lớn đang đi đến kìa! Mình phải trốn đi thôi!\' Bác Sư Tử liền gầm khẽ: \'Đừng sợ, tôi chỉ muốn đến gần hơn một chút thôi mà!\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_4.png',
+        text: 'Nhìn thấy sự lúng túng của Bò Đen, bác Bò Già thông thái liền cất tiếng gọi trầm ấm. Bác hiểu rằng, nếu mỗi chú bò chạy một ngả, mọi người sẽ rất dễ gặp nguy hiểm và lạc mất nhau. Bác khuyên nhủ: \'Cả nhà ơi, đừng chạy tản mát! Hãy nhớ lời ông cha dặn: Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao!\' Bò Vàng đồng ý: \'Đúng rồi, chúng ta phải đứng lại cùng nhau!\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_5.png',
+        text: 'Nghe lời Bò Già, ngay lập tức, các chú bò nhanh nhẹn bước chung một nhịp. Họ xếp thành một vòng tròn lớn vững chãi. Những chiếc sừng nhỏ cong cong hướng ra ngoài, còn các chú bò con được che chở an toàn ở chính giữa vòng tròn. Bò Út tự tin nói: \'Em không sợ nữa rồi, các anh chị bọc lót cho em chặt quá!\' Bò Nâu an ủi: \'Yên tâm nhé, chúng ta là một gia đình, luôn bảo vệ lẫn nhau!\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_6.png',
+        text: 'Bác Sư Tử bước tới, nhưng bước chân bỗng khựng lại. Trước mắt bác không phải là những chú bò nhút nhát chạy toán loạn, mà là một bức tường thành vững chắc, kiên cố và không có một kẽ hở nào. Bác Sư Tử gãi đầu ngơ ngác: \'Ơ kìa? Sao họ lại đứng thành một khối như vậy? Mình không biết phải đi vào từ lối nào cả!\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_7.png',
+        text: 'Bác Sư Tử không bỏ cuộc, bác thử đi vòng sang bên trái, rồi lại lững thững bước sang bên phải. Nhưng bác đi đến đâu, vòng tròn đàn bò lại nhịp nhàng xoay đến đó, luôn giữ thế chủ động và đoàn kết bảo vệ nhau. Bò Vàng dõng dạc nói: \'Dù hướng nào, chúng tôi cũng đồng lòng!\' Bác Sư Tử vô cùng ngạc nhiên: \'Lạ thật đấy, không một ai tách hàng, không một ai sợ hãi bỏ chạy sao?\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_8.png',
+        text: 'Đàn bò nhớ lại bài học ngày trước, khi họ còn hay tranh giành những ngọn cỏ non và đứng xa nhau, ai cũng dễ bị bắt nạt. Từ ngày hiểu được giá trị của sự hòa thuận, họ đã hứa sẽ không bao giờ để lòng ích kỷ chia rẽ tình anh em. Bò Đen tâm sự: \'Ngày xưa chúng ta thật khờ khạo khi cãi nhau.\' Bác Bò Già gật gù ôn tồn: \'Đúng vậy, bài học xương máu ấy giúp chúng ta hiểu rằng: Đoàn kết là sức mạnh vô địch!\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_9.png',
+        text: 'Thời gian trôi qua, mặt trời đã lên cao tỏa ánh nắng vàng rực rỡ. Bác Sư Tử đã mỏi rã rời cả đôi chân nhưng vẫn không thể tìm được cách nào để tiếp cận đàn bò. Bác ngồi sụp xuống thảm cỏ, thở dài sườn sượt: \'Mệt quá đi mất! Đàn bò này giống như một ngôi nhà đá kiên cố vậy, chẳng thể nào suy chuyển.\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_10.png',
+        text: 'Từ trong vòng tròn, bác Bò Già nhìn thấy vẻ mệt mỏi và chiếc bụng đang đói cồn cào của Sư Tử. Thay vì tức giận hay thù ghét, lòng nhân ái trong bác Bò Già trỗi dậy. Bác hiểu rằng ai cũng cần có thức ăn để sinh sống. Bác Bò Già cất tiếng hỏi: \'Bác Sư Tử ơi, bác đang rất đói và mệt phải không?\' Bác Sư Tử buồn bã đáp: \'Đúng vậy... Tôi đi tìm thức ăn từ sáng tới giờ mà chưa có gì vào bụng cả.\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_11.png',
+        text: 'Bác Bò Già ôn tồn giải thích và chỉ tay về phía thung lũng bên cạnh, nơi có rất nhiều cây ăn quả chín mọng và những nguồn thức ăn khác phù hợp cho muôn loài trong rừng. Đàn bò luôn sẵn lòng chia sẻ thông tin để mọi người cùng sống hòa bình. Bác Bò Già chỉ dẫn: \'Chúng tôi là một khối đoàn kết, bác không thể làm hại chúng tôi đâu. Nhưng ở thung lũng phía tây kia có rất nhiều trái cây ngọt và những dòng suối mát lành, bác có thể qua đó thưởng thức!\' Bác Sư Tử sáng mắt lên: \'Thật thế sao? Ở đó có đồ ăn cho tôi à?\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_12.png',
+        text: 'Nghe những lời nói chân thành và đầy tình thương của bác Bò Già, bác Sư Tử bỗng cảm thấy lòng mình ấm áp lạ thường. Bác nhận ra rằng, bạo lực không mang lại kết quả tốt đẹp, và sự tử tế mới là điều đáng quý nhất. Bác Sư Tử xúc động nói: \'Cảm ơn bác Bò Già và đàn bò nhé! Sự đoàn kết của các bạn làm tôi khâm phục, và sự nhân hậu của các bạn làm tôi cảm động.\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_13.png',
+        text: 'Thấy Sư Tử đã hiểu ra điều phải trái, vòng tròn đàn bò từ từ mở ra. Họ cùng nhau vẫy tay chào bác Sư Tử lông vàng. Không còn khoảng cách, không còn sợ hãi, giữa họ giờ đây là sợi dây của sự thấu hiểu. Đàn bò đồng thanh kêu lên vui vẻ: \'Tạm biệt bác Sư Tử! Chúc bác có một bữa trưa ngon miệng ở thung lũng phía tây nhé!\' Bác Sư Tử cũng vẫy chào lại: \'Tạm biệt những người bạn thông minh và đoàn kết!\'',
+        audio: ''
+      },
+      {
+        image: '/images/cow_story/cow_page_14.png',
+        text: 'Bác Sư Tử vui vẻ bước đi về phía thung lũng mới. Trên đồng cỏ xanh, đàn bò lại cùng nhau quây quần, rộn rã tiếng ca. Câu chuyện về lòng đoàn kết và sự thấu hiểu của họ mãi là bài học ấm áp, nhắc nhở chúng ta rằng: Khi nắm chặt tay nhau, chúng ta có thể vượt qua mọi thử thách một cách bình yên nhất. Bò Út ngân nga hát: \'La la la! Đoàn kết là sức mạnh, yêu thương là nụ cười!\' Bác Bò Già mỉm cười xoa đầu chú bò con: \'Đúng vậy, các cháu yêu quý. Hãy luôn thương yêu và bảo vệ lẫn nhau nhé!\'',
+        audio: ''
+      }
+    ]
+  }
+];
 
 export default function App() {
   // ================= APPLICATION STATE =================
