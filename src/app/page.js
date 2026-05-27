@@ -849,70 +849,72 @@ export default function App() {
     const headerBg = isNight ? 'bg-[#0f172a]/95 text-white border-b border-white/5' : 'glass-header text-textPrimary border-b border-textSecondary/10';
 
     return (
-      <header className={`w-full h-14 min-h-14 px-4 flex justify-between items-center z-20 absolute top-0 left-0 right-0 ${headerBg}`}>
-        <div className="flex items-center">
-          {currentScreen !== 'home' && currentScreen !== 'gatekeeper' && (
-            <button 
-              onClick={() => {
-                if (isHub || isDetail) navigateTo('gatekeeper');
-                else navigateTo('home');
-              }} 
-              className={`w-9 h-9 flex items-center justify-center rounded-full active:scale-90 transition-all mr-2 ${isNight ? 'bg-white/10 hover:bg-white/20' : 'bg-textPrimary/5 hover:bg-textPrimary/10'}`}
-              title="Quay lại"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-              </svg>
-            </button>
-          )}
-
-          <h2 className={`${titleClass} truncate max-w-[170px]`}>
-            {titleText}
-            {currentScreen === 'home' && <span className="text-honeyYellow">.</span>}
-          </h2>
-        </div>
-
-        <div className="flex items-center gap-2">
-          {currentScreen === 'home' && (
-            <div className="flex items-center">
-              {isSearchOpen && (
-                <input 
-                  type="text" 
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Tìm truyện..." 
-                  className="px-3 py-1.5 text-xs rounded-xl bg-white border border-textSecondary/20 focus:outline-none focus:border-honeyYellow w-28 mr-1.5 animate-fade-in"
-                />
-              )}
+      <header className={`w-full h-14 min-h-14 z-20 absolute top-0 left-0 right-0 ${headerBg}`}>
+        <div className="max-w-4xl mx-auto w-full h-full px-4 flex justify-between items-center">
+          <div className="flex items-center">
+            {currentScreen !== 'home' && currentScreen !== 'gatekeeper' && (
               <button 
                 onClick={() => {
-                  setIsSearchOpen(!isSearchOpen);
-                  setSearchQuery('');
+                  if (isHub || isDetail) navigateTo('gatekeeper');
+                  else navigateTo('home');
                 }} 
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-textPrimary/5 text-textPrimary hover:bg-textPrimary/10 transition-all"
+                className={`w-9 h-9 flex items-center justify-center rounded-full active:scale-90 transition-all mr-2 ${isNight ? 'bg-white/10 hover:bg-white/20' : 'bg-textPrimary/5 hover:bg-textPrimary/10'}`}
+                title="Quay lại"
               >
-                🔍
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
               </button>
-            </div>
-          )}
+            )}
 
-          {currentScreen === 'home' && (
+            <h2 className={`${titleClass} truncate max-w-[170px]`}>
+              {titleText}
+              {currentScreen === 'home' && <span className="text-honeyYellow">.</span>}
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {currentScreen === 'home' && (
+              <div className="flex items-center">
+                {isSearchOpen && (
+                  <input 
+                    type="text" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Tìm truyện..." 
+                    className="px-3 py-1.5 text-xs rounded-xl bg-white border border-textSecondary/20 focus:outline-none focus:border-honeyYellow w-28 mr-1.5 animate-fade-in"
+                  />
+                )}
+                <button 
+                  onClick={() => {
+                    setIsSearchOpen(!isSearchOpen);
+                    setSearchQuery('');
+                  }} 
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-textPrimary/5 text-textPrimary hover:bg-textPrimary/10 transition-all"
+                >
+                  🔍
+                </button>
+              </div>
+            )}
+
+            {currentScreen === 'home' && (
+              <button 
+                onClick={() => navigateTo('gatekeeper')} 
+                className="w-8.5 h-8.5 flex items-center justify-center rounded-full bg-textPrimary/5 text-textPrimary hover:bg-textPrimary/10 active:scale-90 transition-all mr-1"
+                title="Quay về cổng chọn tuổi"
+              >
+                👦
+              </button>
+            )}
+
             <button 
-              onClick={() => navigateTo('gatekeeper')} 
-              className="w-8.5 h-8.5 flex items-center justify-center rounded-full bg-textPrimary/5 text-textPrimary hover:bg-textPrimary/10 active:scale-90 transition-all mr-1"
-              title="Quay về cổng chọn tuổi"
+              onClick={() => navigateTo('admin')} 
+              className={`w-9 h-9 flex items-center justify-center rounded-full active:scale-90 transition-all ${isNight ? 'bg-white/10 text-white' : 'bg-textPrimary/5 text-textPrimary'}`}
+              title="Admin"
             >
-              👦
+              ⚙️
             </button>
-          )}
-
-          <button 
-            onClick={() => navigateTo('admin')} 
-            className={`w-9 h-9 flex items-center justify-center rounded-full active:scale-90 transition-all ${isNight ? 'bg-white/10 text-white' : 'bg-textPrimary/5 text-textPrimary'}`}
-            title="Admin"
-          >
-            ⚙️
-          </button>
+          </div>
         </div>
       </header>
     );
@@ -937,25 +939,27 @@ export default function App() {
     ];
 
     return (
-      <footer className={`absolute bottom-0 left-0 right-0 h-16 min-h-16 ${navBg} z-20 flex justify-around items-center px-2`}>
-        {tabs.map(tab => {
-          let isActive = currentScreen === tab.id;
-          if (tab.id === 'explore' && currentScreen === 'age-hub') isActive = true;
-          
-          const activeClass = isActive ? activeColor : 'opacity-60';
-          const clickAction = tab.id === 'explore' ? () => navigateTo('age-hub', { ageGroup: '5-8' }) : () => navigateTo(tab.id);
+      <footer className={`absolute bottom-0 left-0 right-0 h-16 min-h-16 ${navBg} z-20`}>
+        <div className="max-w-4xl mx-auto w-full h-full flex justify-around items-center px-2">
+          {tabs.map(tab => {
+            let isActive = currentScreen === tab.id;
+            if (tab.id === 'explore' && currentScreen === 'age-hub') isActive = true;
+            
+            const activeClass = isActive ? activeColor : 'opacity-60';
+            const clickAction = tab.id === 'explore' ? () => navigateTo('age-hub', { ageGroup: '5-8' }) : () => navigateTo(tab.id);
 
-          return (
-            <button 
-              key={tab.id}
-              onClick={clickAction}
-              className={`flex-1 h-full flex flex-col justify-center items-center ${activeClass} active:scale-95 transition-transform`}
-            >
-              {tab.icon}
-              <span className="text-[10px] font-bold mt-1">{tab.label}</span>
-            </button>
-          );
-        })}
+            return (
+              <button 
+                key={tab.id}
+                onClick={clickAction}
+                className={`flex-1 h-full flex flex-col justify-center items-center ${activeClass} active:scale-95 transition-transform`}
+              >
+                {tab.icon}
+                <span className="text-[10px] font-bold mt-1">{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </footer>
     );
   };
@@ -1043,8 +1047,8 @@ export default function App() {
     }
 
     return (
-      <div className="w-full h-full flex flex-col pt-16">
-        <div className="flex-1 overflow-y-auto pb-20">
+      <div className="w-full flex-1 flex flex-col pt-16">
+        <div className="max-w-4xl mx-auto w-full flex-1 overflow-y-auto pb-20">
           
           <section className="w-full px-4 py-3.5 mb-1">
             <div className="bg-cardLight border border-textSecondary/5 rounded-2xl p-4 flex items-center justify-between shadow-sm relative overflow-hidden">
@@ -1199,8 +1203,8 @@ export default function App() {
     const ageGroupTags = ['👦👧 Ngủ ngon', '🦊 Động vật', '🏡 Gia đình', '🧑‍🤝‍🧑 Phiêu lưu', '🧑‍🦱👩‍🦱 Giải mật mã', '🚀 Khoa học'];
 
     return (
-      <div className="w-full h-full flex flex-col pt-16">
-        <div className="flex-1 overflow-y-auto pb-20">
+      <div className="w-full flex-1 flex flex-col pt-16">
+        <div className="max-w-4xl mx-auto w-full flex-1 overflow-y-auto pb-20">
           <div className="px-4 py-4 mb-2">
             <div className={`rounded-2xl p-4 border border-textSecondary/10 ${headerStyle}`}>
               <p className="text-xs font-bold leading-relaxed">{description}</p>
@@ -1287,8 +1291,8 @@ export default function App() {
     const favText = isFav ? 'Đã thích' : 'Yêu thích';
 
     return (
-      <div className="w-full h-full flex flex-col pt-16">
-        <div className="flex-1 overflow-y-auto pb-20">
+      <div className="w-full flex-1 flex flex-col pt-16">
+        <div className="max-w-4xl mx-auto w-full flex-1 overflow-y-auto pb-20">
           <section className="w-full px-4 pt-4 mb-4">
             <div className="w-full aspect-[4/3] bg-gray-200 rounded-2xl overflow-hidden shadow-sm border border-textSecondary/5 flex items-center justify-center">
               {getStoryCover(story, 'large')}
@@ -1394,32 +1398,36 @@ export default function App() {
     const textBg = isDarkReader ? 'text-white/90' : 'text-textPrimary';
 
     return (
-      <div className={`w-full h-full flex flex-col justify-between ${readerBg} relative`}>
-        <header className={`w-full h-14 min-h-14 px-4 flex justify-between items-center z-10 border-b ${isDarkReader ? 'border-white/5 bg-[#17213A]/90' : 'border-textSecondary/10 bg-cardLight/90'}`}>
-          <button onClick={exitReader} className={`w-10 h-10 flex items-center justify-center rounded-full ${isDarkReader ? 'bg-white/10 text-white' : 'bg-textPrimary/5 text-textPrimary'} active:scale-95 transition-transform`}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <div className="text-center">
-            <h1 className="text-[13px] font-bold truncate max-w-[150px]">{story.title}</h1>
-            <p className="text-[10px] opacity-60 font-semibold">Nhóm tuổi: {story.ageGroup}</p>
-          </div>
-          <div className={`${isDarkReader ? 'bg-white/10 text-white' : 'bg-honeyYellow/20 text-textPrimary'} text-[12px] font-bold px-3 py-1 rounded-full`}>
-            Trang <span>{pageNum}</span>/{totalPages}
+      <div className={`w-full flex-1 flex flex-col justify-between ${readerBg} relative`}>
+        <header className={`w-full h-14 min-h-14 flex justify-between items-center z-10 border-b ${isDarkReader ? 'border-white/5 bg-[#17213A]/90' : 'border-textSecondary/10 bg-cardLight/90'}`}>
+          <div className="max-w-4xl mx-auto w-full h-full px-4 flex justify-between items-center">
+            <button onClick={exitReader} className={`w-10 h-10 flex items-center justify-center rounded-full ${isDarkReader ? 'bg-white/10 text-white' : 'bg-textPrimary/5 text-textPrimary'} active:scale-95 transition-transform`}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="text-center">
+              <h1 className="text-[13px] font-bold truncate max-w-[150px]">{story.title}</h1>
+              <p className="text-[10px] opacity-60 font-semibold">Nhóm tuổi: {story.ageGroup}</p>
+            </div>
+            <div className={`${isDarkReader ? 'bg-white/10 text-white' : 'bg-honeyYellow/20 text-textPrimary'} text-[12px] font-bold px-3 py-1 rounded-full`}>
+              Trang <span>{pageNum}</span>/{totalPages}
+            </div>
           </div>
         </header>
 
-        <div className="w-full h-1.5 bg-black/5 flex px-0.5 gap-1 select-none">
-          {Array.from({ length: totalPages }).map((_, i) => {
-            const isActive = i <= currentPage;
-            const isCurrent = i === currentPage;
-            const dotColor = isCurrent ? 'bg-honeyYellow' : (isActive ? (isDarkReader ? 'bg-white' : 'bg-textPrimary') : (isDarkReader ? 'bg-white/20' : 'bg-textPrimary/10'));
-            return <div key={i} className={`h-full rounded-full transition-all duration-300 ${dotColor}`} style={{ flex: 1 }}></div>;
-          })}
+        <div className="w-full h-1.5 bg-black/5 select-none">
+          <div className="max-w-4xl mx-auto w-full h-full flex px-0.5 gap-1">
+            {Array.from({ length: totalPages }).map((_, i) => {
+              const isActive = i <= currentPage;
+              const isCurrent = i === currentPage;
+              const dotColor = isCurrent ? 'bg-honeyYellow' : (isActive ? (isDarkReader ? 'bg-white' : 'bg-textPrimary') : (isDarkReader ? 'bg-white/20' : 'bg-textPrimary/10'));
+              return <div key={i} className={`h-full rounded-full transition-all duration-300 ${dotColor}`} style={{ flex: 1 }}></div>;
+            })}
+          </div>
         </div>
 
-        <main className="flex-1 overflow-y-auto pb-28 flex flex-col justify-start relative px-4 pt-3">
+        <main className="max-w-4xl mx-auto w-full flex-1 overflow-y-auto pb-28 flex flex-col justify-start relative px-4 pt-3">
           <div className={`w-full aspect-[4/3] ${isDarkReader ? 'bg-black/20' : 'bg-cardLight'} rounded-2xl overflow-hidden border ${isDarkReader ? 'border-white/5' : 'border-textSecondary/5'} shadow-sm relative flex items-center justify-center group mb-4`}>
             {getStoryCover(story, 'large')}
           </div>
@@ -1446,61 +1454,63 @@ export default function App() {
           )}
         </main>
 
-        <footer className="absolute bottom-0 left-0 right-0 h-24 glass-player z-20 flex flex-col justify-between p-3 select-none">
-          <div className="flex justify-between items-center gap-2 mb-2 w-full px-1">
-            <div className="bg-textPrimary text-white text-[9.5px] font-bold p-0.5 rounded-full flex items-center shadow border border-white/10">
-              <button onClick={() => { setReader(prev => ({ ...prev, selectedVoice: 'female' })); localStorage.setItem('bb_selected_voice', 'female'); }} className={`px-2 py-0.5 rounded-full transition-all ${selectedVoice === 'female' ? 'bg-honeyYellow text-textPrimary font-extrabold' : 'opacity-70'}`}>
-                👩‍💼 Nữ (Ban Mai)
-              </button>
-              <button onClick={() => { setReader(prev => ({ ...prev, selectedVoice: 'male' })); localStorage.setItem('bb_selected_voice', 'male'); }} className={`px-2 py-0.5 rounded-full transition-all ${selectedVoice === 'male' ? 'bg-honeyYellow text-textPrimary font-extrabold' : 'opacity-70'}`}>
-                👨‍💼 Nam (Lê Minh)
-              </button>
+        <footer className="absolute bottom-0 left-0 right-0 h-24 glass-player z-20 select-none">
+          <div className="max-w-4xl mx-auto w-full h-full flex flex-col justify-between p-3">
+            <div className="flex justify-between items-center gap-2 mb-2 w-full px-1">
+              <div className="bg-textPrimary text-white text-[9.5px] font-bold p-0.5 rounded-full flex items-center shadow border border-white/10">
+                <button onClick={() => { setReader(prev => ({ ...prev, selectedVoice: 'female' })); localStorage.setItem('bb_selected_voice', 'female'); }} className={`px-2 py-0.5 rounded-full transition-all ${selectedVoice === 'female' ? 'bg-honeyYellow text-textPrimary font-extrabold' : 'opacity-70'}`}>
+                  👩‍💼 Nữ (Ban Mai)
+                </button>
+                <button onClick={() => { setReader(prev => ({ ...prev, selectedVoice: 'male' })); localStorage.setItem('bb_selected_voice', 'male'); }} className={`px-2 py-0.5 rounded-full transition-all ${selectedVoice === 'male' ? 'bg-honeyYellow text-textPrimary font-extrabold' : 'opacity-70'}`}>
+                  👨‍💼 Nam (Lê Minh)
+                </button>
+              </div>
+
+              <div className="flex gap-2">
+                <button onClick={() => setReader(prev => ({ ...prev, isAutoFlip: !prev.isAutoFlip }))} className={`px-2.5 py-1 rounded-lg text-[9px] font-extrabold border ${reader.isAutoFlip ? 'bg-honeyYellow/20 border-honeyYellow text-textPrimary font-black' : 'border-textSecondary/20 text-textSecondary opacity-80'}`}>
+                  🔄 Tự động lật trang: {reader.isAutoFlip ? 'Bật' : 'Tắt'}
+                </button>
+              </div>
             </div>
 
-            <div className="flex gap-2">
-              <button onClick={() => setReader(prev => ({ ...prev, isAutoFlip: !prev.isAutoFlip }))} className={`px-2.5 py-1 rounded-lg text-[9px] font-extrabold border ${reader.isAutoFlip ? 'bg-honeyYellow/20 border-honeyYellow text-textPrimary font-black' : 'border-textSecondary/20 text-textSecondary opacity-80'}`}>
-                🔄 Tự động lật trang: {reader.isAutoFlip ? 'Bật' : 'Tắt'}
-              </button>
+            <div className="w-full flex items-center justify-between gap-2 mb-1 px-1">
+              <span className="text-[10px] font-bold text-textSecondary min-w-[32px]">{formatAudioTime(audioTime)}</span>
+              <div className="flex-1 h-2 bg-textPrimary/10 rounded-full relative cursor-pointer">
+                <div className="absolute top-0 left-0 h-full bg-honeyYellow rounded-full" style={{ width: `${audioProgress}%` }}></div>
+                <div className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-textPrimary border-2 border-white rounded-full shadow-md" style={{ left: `calc(${audioProgress}% - 7px)` }}></div>
+              </div>
+              <span className="text-[10px] font-bold text-textSecondary min-w-[32px] text-right">{formatAudioTime(audioDuration)}</span>
             </div>
-          </div>
 
-          <div className="w-full flex items-center justify-between gap-2 mb-1 px-1">
-            <span className="text-[10px] font-bold text-textSecondary min-w-[32px]">{formatAudioTime(audioTime)}</span>
-            <div className="flex-1 h-2 bg-textPrimary/10 rounded-full relative cursor-pointer">
-              <div className="absolute top-0 left-0 h-full bg-honeyYellow rounded-full" style={{ width: `${audioProgress}%` }}></div>
-              <div className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-textPrimary border-2 border-white rounded-full shadow-md" style={{ left: `calc(${audioProgress}% - 7px)` }}></div>
-            </div>
-            <span className="text-[10px] font-bold text-textSecondary min-w-[32px] text-right">{formatAudioTime(audioDuration)}</span>
-          </div>
-
-          <div className="w-full flex items-center justify-center gap-8">
-            <button onClick={prevReaderPage} className="p-2 text-textPrimary active:scale-75 transition-transform" disabled={currentPage === 0}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 19.5L12 12l7.5-7.5" />
-              </svg>
-            </button>
-
-            <button onClick={toggleReaderAudio} className="w-14 h-14 rounded-full bg-honeyYellow text-textPrimary flex items-center justify-center shadow-md active:scale-95 transition-all border-4 border-white" title="Phát / Tạm dừng">
-              {isAudioLoading ? (
-                <div className="w-6 h-6 border-3 border-textPrimary border-t-transparent rounded-full animate-spin"></div>
-              ) : isPlaying ? (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
-                  <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1-.75-.75V5.25Z" clip-rule="evenodd" />
+            <div className="w-full flex items-center justify-center gap-8">
+              <button onClick={prevReaderPage} className="p-2 text-textPrimary active:scale-75 transition-transform" disabled={currentPage === 0}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 19.5L12 12l7.5-7.5" />
                 </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 ml-1">
-                  <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
-                </svg>
-              )}
-            </button>
+              </button>
 
-            <button onClick={nextReaderPage} className="p-2 text-textPrimary active:scale-75 transition-transform" disabled={currentPage === totalPages - 1}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </button>
+              <button onClick={toggleReaderAudio} className="w-14 h-14 rounded-full bg-honeyYellow text-textPrimary flex items-center justify-center shadow-md active:scale-95 transition-all border-4 border-white" title="Phát / Tạm dừng">
+                {isAudioLoading ? (
+                  <div className="w-6 h-6 border-3 border-textPrimary border-t-transparent rounded-full animate-spin"></div>
+                ) : isPlaying ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
+                    <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1-.75-.75V5.25Z" clip-rule="evenodd" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 ml-1">
+                    <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+                  </svg>
+                )}
+              </button>
+
+              <button onClick={nextReaderPage} className="p-2 text-textPrimary active:scale-75 transition-transform" disabled={currentPage === totalPages - 1}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
+            </div>
           </div>
         </footer>
       </div>
@@ -1512,7 +1522,8 @@ export default function App() {
     const currentStory = bedtime.playlist[bedtime.currentStoryIndex];
 
     return (
-      <div className="w-full h-full flex flex-col pt-16 bg-nightLibrary text-white relative">
+      <div className="w-full flex-1 flex flex-col pt-16 bg-nightLibrary text-white relative">
+        <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col justify-between p-4 z-10">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {Array.from({ length: 25 }).map((_, i) => {
             const w = 1 + Math.random() * 2.5;
@@ -1622,6 +1633,7 @@ export default function App() {
             </div>
           </div>
         </div>
+        </div>
       </div>
     );
   };
@@ -1631,8 +1643,8 @@ export default function App() {
     const favStories = stories.filter(s => favorites.includes(s.id));
     
     return (
-      <div className="w-full h-full flex flex-col pt-16">
-        <div className="flex-1 overflow-y-auto pb-20 px-4 pt-4">
+      <div className="w-full flex-1 flex flex-col pt-16">
+        <div className="max-w-4xl mx-auto w-full flex-1 overflow-y-auto pb-20 px-4 pt-4">
           <h3 className="text-xs font-bold text-textSecondary uppercase tracking-wider mb-2">Huy hiệu trí thức đã đạt</h3>
           <div className="mb-5">
             {unlockedBadges.length === 0 ? (
@@ -1680,8 +1692,8 @@ export default function App() {
   // Render Admin Screen
   const renderAdminScreenView = () => {
     return (
-      <div className="w-full h-full flex flex-col pt-16">
-        <div className="flex-1 overflow-y-auto pb-20 px-4 pt-4">
+      <div className="w-full flex-1 flex flex-col pt-16">
+        <div className="max-w-4xl mx-auto w-full flex-1 overflow-y-auto pb-20 px-4 pt-4">
           <div className="bg-honeyYellow/15 border border-honeyYellow/30 rounded-xl p-4 mb-5 text-[11px] text-textSecondary font-medium leading-relaxed">
             💡 **Giao diện Admin Bảo Bối**: Chị có thể tự tải truyện lên để mở rộng thư viện của con. Truyện mới thêm sẽ được lưu tạm tại trình duyệt (LocalStorage) và xuất hiện ngoài trang chủ ngay lập tức!
           </div>
@@ -1864,7 +1876,7 @@ export default function App() {
   return (
     <div 
       id="app-container" 
-      className={`w-full max-w-[390px] h-screen sm:h-[844px] ${containerTheme} shadow-2xl relative flex flex-col overflow-hidden sm:rounded-[32px] sm:border-8 sm:border-[#1f2430] transition-colors duration-500`}
+      className={`w-full h-screen ${containerTheme} relative flex flex-col overflow-hidden transition-colors duration-500`}
     >
       {renderHeader()}
 

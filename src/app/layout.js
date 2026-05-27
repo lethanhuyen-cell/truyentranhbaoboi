@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="flex justify-center items-center min-h-screen p-0 sm:p-4">
+      <body className="min-h-screen bg-[#FFFDF9] m-0 p-0 overflow-x-hidden">
         {children}
       </body>
     </html>
